@@ -28,7 +28,8 @@ def main():
                   channels = wf.getnchannels(),
                   rate = sample_rate, 
                   output = True)
-  
+ 
+  print(wf.getsampwidth())
   channels = wf.getnchannels()
   # TODO make this work in stereo? 
   #assert(wf.getnchannels() == 1)
@@ -47,6 +48,7 @@ def main():
   n_chunks = 0 
   # read the entire stream in, chunk size is irrelevant here
   data = wf.readframes(wf.getnframes())
+  print(type(data))
   amps = struct.unpack("%ih" % (wf.getnframes() * channels), data)
   
   # normalize. might be better to vectorize this
